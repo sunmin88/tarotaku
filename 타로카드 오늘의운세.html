@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>오늘의운세 by.타로타쿠</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        #tarot-game {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #fortune-text {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .page-title-date {
+            font-size: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .page-sub-title {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        #main-container {
+            background-image: url('https://lh3.googleusercontent.com/fife/AK0iWDyKi6PTLYYgLeuovP1AQbqvN8pdMBJEPmESxUkPjaecgt5CEsdCqEf7SV2qXtQuaHdLt43oTnM4RiOgLjiRa3z59DV47QzR8zwvR4kSBucfQBbIRH52WFIFYiyroxb9BgUdNtNF3oHaUJJw8HEQavpKHwZvdKKKh0h13gT36nKDZYo_JYsXzDXTiVC81Qmgz670k5Nu3uPuBY8KQPqZ7wzSq9wV9HZRSmOJYTCQVh0PMTObqQZfk09K8iIowO99GtSFKGy2NbJdWNteS6httYn33C9boTqnQYZAoK8fpdhDI65c4N3QLBIeLKhRBEABe936kFTSFt1iLPtVaVEEWkvCNqrQkTF4txMpsWeD0nEHtO6sB8SGC6IoJRY2hI1WCfbpTy22LYZE5CTa_0NNKJKW46q3aLi10XUjG-S-84yq4t39XIHi0eBRIdqR-6BIrZlctwCmcGPph85nCxbxp73LOdDj2AEz5u335VJVek96DL3mwstxbQS2feW0tDJZILbTuO2GXUYxYROb9oD8gD6FvLtX6uua-n3lb04NRhMXAQYjmOYjlxVuQeSwojoePMX-BJJhZrZWRK-h8k3fLCL-1bwQ6UFBf_UdKQ_9vnBnQI6c5ZjTxCZXac_mx9K7B351KAtHSxKi_GOqTD4W9LeEkw6jTr2P0Vp7jwqAGjyah9XPMPW21msFQS9Ul3WjSy3L5kpIZBvIx85Hqak_F9k6oJ5bhDJvLT0WRUltr_djrRSYiEdPFUfYmICKo56-BXz7j5ZLTsrrVZKcCRbHIs1mv7ECmcLKQSrpnH_jMYuPl8tcNRrlvZEctucAToZwRc2wpHZdCv7gtPWCoXPsMkaVG1sCsxL7sTBFx6Fk5Y_DEB_GRCObRS65tEYuwDIFpyhg0hvKMPMPdRZa84KTs_YHzHm4ghGAfKBUysP0GiARAXIe8bTPgY9I4HKXP4keOmd95rDkFP8PLl5WrHnNzDLwcZuLzOl3ap8e4ndHzVVVMOgKDzUSKhtsh3QY6Y3Poi0DPLmnP3XIOi9Vn5eyT8kTDalVT_oSRU1kJWFjX4yX11xOqv4mkh0r-wYJrdkQFDHIXI9aFRO4sqlPUur1wjGyo3wNu5jyXyHPjfJ4PmY5k44Eq99MHi84umHkPazeiR79Rz3lw-uNpjZssCoJ_GtkdGd7KicSi0Qu-8-D5y9VOMnTP0r8YpIRJRFIb57zIdi4rP2U_Ezt5Yzr72Dd1X6zaNckCWBzTpJcQqCtPvJZeUi6aDyxLZvlJp9LNyBZYH3MkpZyq24Dco7c4VIyznwmi7wReKJl_8uXwIBQi_U4t5kpq9YY5hWVip2dug7Ep1dboP9cM7LGEoKu9V-2hop5lZc38EqypwI34GmQtJmevTS5U29MiD-OexImAZMMs50ogpUxZco9e6YuTv5Iy7nRoOOa2wIoywwJgApks35ho7LJ3_mS88kU1KSY9tqIaPhzkbwoQafrmwrbCKs-JsZBVg6jl7FvfVj_Iae_QmdZDhiKCsFdhA6q0NLQYrDPLZHqUShpy4psGGYyDo5dFbvk_VsvXSZfLkRWkBMyMReGCLODLYArZW2jLolu70evZZrdTOYz7Y7nWb0VVDW5SDH0Vq8ukABav79eKS6L9ZvEPUUYl7iMnbrj6EILdfQP1yAJ=w2000-h3556');
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media (max-width: 800px) {
+            #main-container {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        #card-grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px;
+            justify-content: center;
+            margin-bottom: 40px;
+
+        }
+        #selected-card-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        #reset-card {
+            display: none;
+            font-size: 16px;
+            color: white;
+            background-color: #2427C7;
+            border: none;
+            padding: 12px 24px;
+            margin: 30px;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #reset-card:hover {
+            background-color: #7273C4;
+        }
+
+        #reset-card:active {
+            background-color: #2427C7;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            margin: 30px;
+        }
+
+        .selected-card {
+            margin: 0px;
+            min-height: 100px;
+            max-height: 300px;
+            width: auto;
+            margin: 10px;
+        }
+
+        .card-container {
+            display: inline-block;
+            height: 100px;
+            width: auto;
+        }
+
+        .card-container img {
+            height: 100px;
+            width: auto;
+        }
+
+        .transparent-box {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 50px;
+            padding-right: 50px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="tarot-game">
+            <h2 class="page-title-date" id="current-date"></h2>
+            <h1 class="page-title">오늘의 운세</h1>
+            <h2 class="page-sub-title">by.타로타쿠</h2>
+            <div id="card-grid-container">
+            </div>
+            <div class="transparent-box">
+                <div id="name_kr"></div>
+                <div id="name_en"></div>
+                <div id="numerological_meaning"></div>
+                <div id="fortune-text"></div>
+            </div>
+            <button id="reset-card" style="display:none;">타로카드 다시 뽑기</button>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        const currentDateElement = document.getElementById("current-date");
+        const now = new Date();
+        const year = now.getFullYear(); 
+        const month = now.getMonth() + 1; 
+        const day = now.getDate(); 
+        currentDateElement.textContent = `${year}년 ${month}월 ${day}일`;
+        document.addEventListener("DOMContentLoaded", function () {
+            const tarotCards = [
+                {
+                    name_kr: "마법사",
+                    name_en: "The Magician",
+                    numerological_meaning: "창조와 시작의 기운.",
+                    todays_fortune: "<br>오늘은 새로운 시작을 계획해보세요. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "여사제",
+                    name_en: "The High Priestess",
+                    numerological_meaning: "지혜와 직관의 상징.",
+                    todays_fortune: "<br>오늘은 직관을 믿고 행동하세요. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "여황후",
+                    name_en: "The Empress",
+                    numerological_meaning: "모성과 풍요의 상징.",
+                    todays_fortune: "<br>오늘은 가족과의 시간을 가질 좋은 날입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "황제",
+                    name_en: "The Emperor",
+                    numerological_meaning: "권위와 통제의 상징.",
+                    todays_fortune: "<br>늘은 주도적으로 행동해야 할 때입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "교황",
+                    name_en: "The Hierophant",
+                    numerological_meaning: "지도와 가르침의 상징.",
+                    todays_fortune: "오늘은 지식을 공유하거나 얻을 기회가 있습니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "마법사",
+                    name_en: "The Magician",
+                    numerological_meaning: "창조와 시작의 기운.",
+                    todays_fortune: "<br>오늘은 새로운 시작을 계획해보세요. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "여사제",
+                    name_en: "The High Priestess",
+                    numerological_meaning: "지혜와 직관의 상징.",
+                    todays_fortune: "<br>오늘은 직관을 믿고 행동하세요. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "여황후",
+                    name_en: "The Empress",
+                    numerological_meaning: "모성과 풍요의 상징.",
+                    todays_fortune: "<br>오늘은 가족과의 시간을 가질 좋은 날입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "황제",
+                    name_en: "The Emperor",
+                    numerological_meaning: "권위와 통제의 상징.",
+                    todays_fortune: "<br>오늘은 주도적으로 행동해야 할 때입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "교황",
+                    name_en: "The Hierophant",
+                    numerological_meaning: "지도와 가르침의 상징.",
+                    todays_fortune: "오늘은 지식을 공유하거나 얻을 기회가 있습니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "마법사",
+                    name_en: "The Magician",
+                    numerological_meaning: "창조와 시작의 기운.",
+                    todays_fortune: "<br>오늘은 새로운 시작을 계획해보세요. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "여사제",
+                    name_en: "The High Priestess",
+                    numerological_meaning: "지혜와 직관의 상징.",
+                    todays_fortune: "<br>오늘은 직관을 믿고 행동하세요. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "여황후",
+                    name_en: "The Empress",
+                    numerological_meaning: "모성과 풍요의 상징.",
+                    todays_fortune: "오늘은 가족과의 시간을 가질 좋은 날입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "황제",
+                    name_en: "The Emperor",
+                    numerological_meaning: "권위와 통제의 상징.",
+                    todays_fortune: "<br>오늘은 주도적으로 행동해야 할 때입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "교황",
+                    name_en: "The Hierophant",
+                    numerological_meaning: "지도와 가르침의 상징.",
+                    todays_fortune: "<br>오늘은 지식을 공유하거나 얻을 기회가 있습니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "마법사",
+                    name_en: "The Magician",
+                    numerological_meaning: "창조와 시작의 기운.",
+                    todays_fortune: "<br>오늘은 새로운 시작을 계획해보세요. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "여사제",
+                    name_en: "The High Priestess",
+                    numerological_meaning: "지혜와 직관의 상징.",
+                    todays_fortune: "<br>오늘은 직관을 믿고 행동하세요. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "여황후",
+                    name_en: "The Empress",
+                    numerological_meaning: "모성과 풍요의 상징.",
+                    todays_fortune: "<br>오늘은 가족과의 시간을 가질 좋은 날입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "황제",
+                    name_en: "The Emperor",
+                    numerological_meaning: "권위와 통제의 상징.",
+                    todays_fortune: "<br>오늘은 주도적으로 행동해야 할 때입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "교황",
+                    name_en: "The Hierophant",
+                    numerological_meaning: "지도와 가르침의 상징.",
+                    todays_fortune: "<br>오늘은 지식을 공유하거나 얻을 기회가 있습니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "황제",
+                    name_en: "The Emperor",
+                    numerological_meaning: "권위와 통제의 상징.",
+                    todays_fortune: "<br>오늘은 주도적으로 행동해야 할 때입니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                {
+                    name_kr: "교황",
+                    name_en: "The Hierophant",
+                    numerological_meaning: "지도와 가르침의 상징.",
+                    todays_fortune: "<br>오늘은 지식을 공유하거나 얻을 기회가 있습니다. <br> 해석을 더 길게 써봅니다. 이렇게 문장이 매우 길어질 것 입니다. 원했던 변화가 찾아옵니다. 미리 준비하세요. 내가 꿈꿔온 이상형과 만나게 됩니다."
+                },
+                // 22장의 카드 정보를 여기에 추가
+            ];
+
+
+
+            const cardGridContainer = document.getElementById("card-grid-container");
+            const resetCardButton = document.getElementById("reset-card");
+            const fortuneText = document.getElementById("fortune-text");
+            const selectedCardContainer = document.getElementById("selected-card-container");
+
+            let selectedCardElement = null; 
+
+            function initializeCards() {
+                for (let i = 0; i < 22; i++) {
+                    const card = document.createElement("div");
+                    card.id = `card-${i}`;
+                    card.classList.add("card-container");
+                    card.innerHTML = `<img src="https://img.freepik.com/premium-vector/tarot-card-back-design-mystical-esoteric-symbols_543062-4716.jpg" alt="Tarot Card Back" style ="max-height: 100%;">`;
+
+                    card.addEventListener("click", function () {
+
+                        if (selectedCardElement) {
+                            selectedCardElement.style.transform = "scale(1)";
+                        }
+
+
+                        card.style.transform = "scale(1.2)";
+                        selectedCardElement = card;
+                    });
+
+                    card.addEventListener("dblclick", function () {
+                        selectCard();
+                    });
+
+                    cardGridContainer.appendChild(card);
+                }
+            }
+            function selectCard() {
+                const randomIndex = Math.floor(Math.random() * tarotCards.length);
+                const selectedCard = tarotCards[randomIndex];
+                document.getElementById('name_kr').textContent = selectedCard.name_kr;
+                document.getElementById('name_en').textContent = selectedCard.name_en;
+                document.getElementById('numerological_meaning').textContent = selectedCard.numerological_meaning;
+                document.getElementById('fortune-text').textContent = selectedCard.todays_fortune;
+                document.querySelector('.transparent-box').style.display = 'block';
+                cardGridContainer.innerHTML = `<img class="selected-card" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg" alt="Selected Tarot Card">`;
+                fortuneText.innerHTML = selectedCard.todays_fortune;
+                cardGridContainer.style.display = "flex";
+                resetCardButton.style.display = "inline";
+            }
+            resetCardButton.addEventListener("click", function () {
+                cardGridContainer.innerHTML = '';
+                cardGridContainer.style.display = "grid";
+                name_kr.innerHTML = '';
+                name_en.innerHTML = '';
+                numerological_meaning.innerHTML = '';
+                fortuneText.innerHTML = '';
+                resetCardButton.style.display = "none";
+                document.querySelector('.transparent-box').style.display = 'none';
+                initializeCards(); 
+            });
+
+            initializeCards();
+        });
+    </script>
+</body>
+
+</html>
